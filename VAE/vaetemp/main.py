@@ -107,8 +107,9 @@ def train(epoch):
         if(epoch<5):
             munp = mu.cpu().detach().numpy()
             logvarnp = logvar.cpu().detach().numpy()
-            feature = np.hstack((munp,logvarnp))
-            with open("epoch"+str(epoch)+".csv", "ab") as f:
+            # feature = np.hstack((munp,logvarnp))
+            feature = munp+logvarnp
+            with open("epoch_add"+str(epoch)+".csv", "ab") as f:
                 np.savetxt(f, feature, delimiter=',',fmt="%.6f")
         loss = loss_function(recon_batch, data, mu, logvar)
         loss.backward()

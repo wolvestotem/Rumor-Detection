@@ -9,24 +9,24 @@ from sklearn.decomposition import PCA
 
 # sns.set_style("darkgrid", {"axes.facecolor": ".95"})
 sns.set()
-epoch=1
-y = pd.read_csv("tsne_senti1.csv",encoding='utf-8')
-X = pd.read_csv("epoch"+str(epoch)+".csv",encoding='utf-8')
-rumor = pd.read_csv("rumorlabel.csv",encoding='utf-8')
-# print(y.head(10))
+for epoch in range(1,5):
+    y = pd.read_csv("tsne_senti1.csv",encoding='utf-8')
+    X = pd.read_csv("epoch_add"+str(epoch)+".csv",encoding='utf-8')
+    rumor = pd.read_csv("rumorlabel.csv",encoding='utf-8')
+    # print(y.head(10))
 
-# pca = PCA(0.95)
-# X_pca = pca.fit_transform(X)
-tsne = TSNE(random_state=0)
-X_tsne = tsne.fit_transform(X) 
-
-
-tsne_df = pd.DataFrame(X_tsne)
-tsne_df.columns = ["X", "Y"]
-tsne_df["labels"] = y
-tsne_df["rumor_label"] = rumor
-# print(tsne_df.head(10))
-ax = sns.scatterplot(x="X", y="Y",hue="labels", data=tsne_df)
+    # pca = PCA(0.95)
+    # X_pca = pca.fit_transform(X)
+    tsne = TSNE(random_state=0)
+    X_tsne = tsne.fit_transform(X) 
 
 
-plt.show()
+    tsne_df = pd.DataFrame(X_tsne)
+    tsne_df.columns = ["X", "Y"]
+    tsne_df["labels"] = y
+    tsne_df["rumor_label"] = rumor
+    # print(tsne_df.head(10))
+    ax = sns.scatterplot(x="X", y="Y",hue="labels", data=tsne_df, style="rumor_label")
+
+
+    plt.show()
