@@ -104,11 +104,12 @@ def train(epoch):
         optimizer.zero_grad()
         recon_batch, mu, logvar = model(data)
         # print(type(mu))
-        # munp = mu.cpu().detach().numpy()
-        # logvarnp = logvar.cpu().detach().numpy()
-        # feature = np.hstack((munp,logvarnp))
-        # with open("epoch"+str(epoch)+".csv", "ab") as f:
-        #     np.savetxt(f, feature, delimiter=',',fmt="%.6f")
+        if(epoch<5):
+            munp = mu.cpu().detach().numpy()
+            logvarnp = logvar.cpu().detach().numpy()
+            feature = np.hstack((munp,logvarnp))
+            with open("epoch"+str(epoch)+".csv", "ab") as f:
+                np.savetxt(f, feature, delimiter=',',fmt="%.6f")
         loss = loss_function(recon_batch, data, mu, logvar)
         loss.backward()
         train_loss += loss.item()
