@@ -9,8 +9,9 @@ from sklearn.decomposition import PCA
 
 # sns.set_style("darkgrid", {"axes.facecolor": ".95"})
 sns.set()
-y = pd.read_csv("tsne_senti1.csv",encoding='utf-8')
+y = pd.read_csv("tsne_senti2.csv",encoding='utf-8')
 X = pd.read_csv("features_for_Rumor Data.csv_.csv",encoding='utf-8')
+# rumor = pd.read_csv("Rumor Data V3.csv",encoding='utf-8')
 rumor = pd.read_csv("rumorlabel.csv",encoding='utf-8')
 # print(y.head(10))
 
